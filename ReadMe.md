@@ -1,49 +1,61 @@
-# Sentiment Recognition 👁️
+# World Hapinness Report 🌎️
 
 ## Introduction
 
 Bienvenue dans votre rapport sur les données "World Hapinness" ! Dans cette application streamlit, vous pourrez naviguer 
-à travers ces data via des visualisations graphiques ainsi que des tableaux.
+à travers ces données via des graphiques interactifs ainsi que des tableaux de détails pour chaque pays.
 
 
 ## Comment Exécuter
 
-Pour exécuter l'application, il faut créer un docker à partir du dockerfile. Voici les étapes :
+Pour exécuter l'application, deux possibilités : 
 
-
-1. Cloner le repository de l'application : 
-
+1. Vous pouvez récupérer l'image docker via dockerhub et la commande suivante : 
     ```bash
-    git clone https://github.com/AxelFritz2/Sentiment_Recognition.git
+    docker pull axelfritz2/projet_linux
     ```
 
-2. Accéder au répertoire : 
-    ```bash
-    cd Sentiment_Recognition
-    ```
+2. Sinon vous pouvez créer l'image docker via le docker file de ce repository en suivant ces étapes : 
 
-3. Créer l'image Docker :
+   1. Cloner le repository de l'application : 
 
-    ```bash
-    docker build -t application:latest .
-    ```
+       ```bash
+       git clone https://github.com/AxelFritz2/Projet_Linux.git
+       ```
+
+   2. Accéder au répertoire : 
+       ```bash
+       cd Projet_Linux
+       ```
+
+   3. Créer l'image Docker :
+
+       ```bash
+       docker build -t application:latest .
+       ```
 
 En créant l'image docker, un environnement virtuel va se créer et les dépendances vont se télécharger directement. 
 ## Utilisation
 
-Pour lancer l'application, il vous suffit de lancer la commande Docker run :
-
+Pour lancer l'application, il vous suffit de lancer la commande Docker run. Si vous avez récupéré l'image docker via DockerHub :  
 ```bash
-docker run application 
+docker run -p 8501:8501 axelfritz2/projet_linux
+```
+
+Si vous avez créé l'image via le docker file :
+```bash
+docker run -p 8501:8501 application
 ```
 
 Cette commande va effectuer les tâches suivantes : 
-- Télecharger les données d'entraînement depuis Kaggle (https://www.kaggle.com/datasets/jonathanoheix/face-expression-recognition-dataset)
-- Entraîner le modèle de computer vision. 
-- Lancer l'application streamlit
+- Télecharger les données .
+- Mettre en forme les données pour l'application.
+- Lancer l'application streamlit.
 
-Vous pourrez ainsi lancer l'application via l'url fourni.
+Vous pourrez ainsi lancer l'application via l'url **externe** fourni.
 
-## Remarques
+## Auteurs
 
-- La fonctionnalité de détection de sentiment peut ne pas fonctionner. Cette dernière est encore en cours développement. 
+- [Samuel Baheux](https://github.com/SamuelBaheux)
+- [Samuel Launay Pariente](https://github.com/samuel-LP)
+- [Axel Fritz](https://github.com/AxelFritz1)
