@@ -21,12 +21,13 @@ st.plotly_chart(Scatter(df_clean))
 st.markdown("## Zoom sur les régions du monde")
 st.plotly_chart(BoxPlotRegion(df_clean))
 
-region = st.selectbox(label = 'Selectionner une région du monde', options = ["world", "europe", "africa", "asia"])
-variable = st.selectbox(label = 'Selectionner une variable', options = ["Generosity",
-                                                                        "Ladder score",
-                                                                        "Healthy life expectancy",
-                                                                        "Social support",
-                                                                        "Freedom to make life choices"])
+region = st.selectbox(label = 'Selectionner une région du monde', options = ["Monde", "Europe", "Afrique", "Asie"])
+variable = st.selectbox(label = 'Selectionner une variable', options = ["Générosité",
+                                                                        "Score de Bonheur",
+                                                                        "Espérance de vie en bonne santé",
+                                                                        "Assistance Sociale",
+                                                                        "Liberté des choix"])
+
 st.plotly_chart(WorldMap(df_clean, region, variable))
 
 st.markdown("## Zoom sur les pays")

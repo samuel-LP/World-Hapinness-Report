@@ -2,33 +2,48 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
 
+regions_dic = {"Monde" : "world",
+               "Europe" : "europe",
+               "Afrique" : "africa",
+               "Asie" : 'asia'}
+
+features_dic = {"Générosité": "Generosity",
+                "Score de Bonheur" : "Ladder score",
+                "Espérance de vie en bonne santé" : "Healthy life expectancy",
+                "Assistance Sociale" : "Social support",
+                "Liberté des choix" : "Freedom to make life choices"}
+
 def BoxPlotRegion(df):
     fig = px.box(df, y="Regional indicator", x="Ladder score",
-                 title="Happiness score boxplot by region",
-                 labels={"region": "Region", "Ladder score": "Happiness Score"},
+                 title="Boxplot du score de bonheur par région",
+                 labels={"region": "Pays", "Ladder score": "Score de Bonheur"},
                  orientation="h",
                  color_discrete_sequence=px.colors.sequential.Greens_r)
     return(fig)
 def CountryHistogram(df):
     fig = px.histogram(df, x='Country name', y='Ladder score',
-                       labels={'Ladder score': 'Score du bonheur'},
-                       title='Distribution des scores du bonheur des 10 meilleurs pays')
+                       labels={'Ladder score': 'Score de bonheur'},
+                       title="Distribution des scores du bonheur de l'ensemble des pays")
     fig.update_layout(barmode='overlay')
     fig.update_traces(opacity=0.75)
-    fig.update_layout(yaxis_title='Region', xaxis_title='Happiness Score', title_font_size=20)
+    fig.update_layout(yaxis_title='Pays', xaxis_title='Score de Bonheur', title_font_size=20)
 
     return (fig)
 
 def Scatter(df):
-    fig = px.scatter(df, x = "Ladder score", y = 'Logged GDP per capita', title="Scatter plot", hover_name='Country name')
+    fig = px.scatter(df,
+                     x = "Ladder score",
+                     y = 'Logged GDP per capita',
+                     title="Distribution des pays par PIB par habitant et score de bonheur",
+                     hover_name='Country name')
     return(fig)
 
 def WorldMap(df, region, variable):
     gdp_world_map = px.choropleth(df,
                                   locations="alpha-3",
-                                  color=variable,
-                                  scope=region,
-                                  title=f"{variable} Ranking World Map",
+                                  color=features_dic[variable],
+                                  scope=regions_dic[region],
+                                  title=f"Classement par {variable} - {region}",
                                   color_continuous_scale="rdylgn",
                                   hover_name="Country name")
 
@@ -43,8 +58,8 @@ def WorldMap(df, region, variable):
     return(gdp_world_map)
 
 def IndividualCountrySummary(df, country):
-    categories = ['Log GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices',
-                  'Generosity', 'Perceptions of corruption']
+    categories = ['PIB par tête', 'Assistance Sociale', 'Espérance de vie en bonne santé', 'Liberté des choix',
+                  'Générosité', 'Perception de la corruption']
 
     list_of_columns = ['Explained by: Log GDP per capita', 'Explained by: Social support',
                           'Explained by: Healthy life expectancy',
@@ -53,7 +68,6 @@ def IndividualCountrySummary(df, country):
 
     values_region = list(df.loc[df["Country name"] == country, list_of_columns].values)[0]
 
-    # Création du graphique
     fig = go.Figure()
 
     fig.add_trace(go.Scatterpolar(
@@ -67,10 +81,9 @@ def IndividualCountrySummary(df, country):
         polar=dict(
             radialaxis=dict(
                 visible=True,
-                range=[0, 2]  # Ajuster cette plage en fonction de vos données
+                range=[0, 2]
             )),
-        showlegend=True
-    )
+        showlegend=True)
 
     return(fig)
 
@@ -81,8 +94,18 @@ def SummaryTable(df, country):
                       'Explained by: Generosity', 'Explained by: Perceptions of corruption']
 
     table = df.loc[df["Country name"] == country, list_of_columns]
+    table = table.rename(columns = {'Country name' : "Pays",
+                                    'rank' : "Classement (en termes de Bonheur)",
+                                    'Ladder score' : "Score de Bonheur",
+                                    'Explained by: Log GDP per capita' : "Expliqué par le PIB par tête",
+                                    'Explained by: Social support' : "Expliqué par l'assistance sociale",
+                                    'Explained by: Healthy life expectancy' : "Expliqué par l'epsérance de vie en bonne santé",
+                                    'Explained by: Freedom to make life choices' : "Expliqué par la liberté de choix",
+                                    'Explained by: Generosity' : "Expliqué par la générosité",
+                                    'Explained by: Perceptions of corruption' : "Expliqué par la perception de corruption" })
+
     table = table.transpose()
-    table.columns = ["Summary"]
+    table.columns = ["Résumé"]
     return(table)
 
 
