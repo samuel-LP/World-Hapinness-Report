@@ -12,7 +12,7 @@ Pour exécuter l'application, deux possibilités :
 
 1. Vous pouvez récupérer l'image docker via dockerhub et la commande suivante : 
     ```bash
-    docker pull axelfritz2/projet_linux
+    docker pull axelfritz2/world_hapiness_report
     ```
 
 2. Sinon vous pouvez créer l'image docker via le docker file de ce repository en suivant ces étapes : 
@@ -39,7 +39,7 @@ En créant l'image docker, un environnement virtuel va se créer et les dépenda
 
 Pour lancer l'application, il vous suffit de lancer la commande Docker run. Si vous avez récupéré l'image docker via DockerHub :  
 ```bash
-docker run -p 8501:8501 axelfritz2/projet_linux
+docker run -p 8501:8501 axelfritz2/world_hapiness_report
 ```
 
 Si vous avez créé l'image via le docker file :
