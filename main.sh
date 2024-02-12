@@ -1,4 +1,4 @@
-echo "******************* Initialisation de l'application *******************"
+echo "******************* Initialisation de l'application ***********"
 source ./venv/bin/activate
 
 echo "******************* Collecte des données *******************"
@@ -6,11 +6,11 @@ bash ./data_collector/collect_data.sh
 echo "******************* Données collectées *******************"
 
 
-echo "******************* Entraînement du modèle *******************"
+echo "******************* Traitement des données *******************"
 bash ./data_processor/process_data.sh
-echo "******************* Modèle entraîné *******************"
+echo "******************* Données traitées *******************"
 
 
-echo "******************* Lancement de l'application *******************"
+echo "******************* Lancement de l'application ****************"
 source ./venv/bin/activate
 python -m streamlit run ./application/app.py --server.port 8501
