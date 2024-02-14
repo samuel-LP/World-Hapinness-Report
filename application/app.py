@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pandas as pd
 from plot_utils import *
 
 df_clean = pd.read_csv("./data/df_clean.csv")
