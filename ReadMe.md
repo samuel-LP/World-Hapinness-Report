@@ -2,59 +2,64 @@
 
 ## Introduction
 
-Bienvenue dans votre rapport sur les données "World Hapinness" ! Dans cette application streamlit, vous pourrez naviguer 
-à travers ces données via des graphiques interactifs ainsi que des tableaux de détails pour chaque pays.
+Welcome to your "World Happiness" data report! In this Streamlit application, you will be able to navigate through this data via interactive charts as well as detailed tables for each country.
 
 
-## Comment Exécuter
+## How to execute
 
-Pour exécuter l'application, deux possibilités : 
+To run the application, there are two possibilities: 
 
-1. Vous pouvez récupérer l'image docker via dockerhub et la commande suivante : 
+1. You can pull the Docker image from Docker Hub using the following command:
+
     ```bash
-    docker pull axelfritz2/world_hapiness_report
+    docker pull samuel-LP/world_hapiness_report
     ```
 
-2. Sinon vous pouvez créer l'image docker via le docker file de ce repository en suivant ces étapes : 
+2. Otherwise, you can create the Docker image using the Dockerfile from this repository by following these steps:
 
-   1. Cloner le repository de l'application : 
+   1. Clone the repository of the application : 
 
        ```bash
-       git clone https://github.com/AxelFritz2/Projet_Linux.git
+       git clone git@github.com:samuel-LP/World-Hapinness-Report.git
        ```
 
-   2. Accéder au répertoire : 
+   2. Access to the repository : 
        ```bash
        cd Projet_Linux
        ```
 
-   3. Créer l'image Docker :
+   3. Create the docker image:
 
        ```bash
        docker build -t application:latest .
        ```
 
-En créant l'image docker, un environnement virtuel va se créer et les dépendances vont se télécharger directement. 
+While creating the Docker image, a virtual environment will be created and the dependencies will download directly.
+
 ## Utilisation
 
-Pour lancer l'application, il vous suffit de lancer la commande Docker run. Si vous avez récupéré l'image docker via DockerHub :  
+To launch the application, you just need to run the Docker run command. If you have pulled the Docker image via DockerHub:
+
 ```bash
-docker run -p 8501:8501 axelfritz2/world_hapiness_report
+docker run -p 8501:8501 samuel-LP/world-hapiness-report
 ```
 
-Si vous avez créé l'image via le docker file :
+If you have create the image via the docker file :
+
 ```bash
 docker run -p 8501:8501 application
 ```
 
-Cette commande va effectuer les tâches suivantes : 
-- Télecharger les données .
-- Mettre en forme les données pour l'application.
-- Lancer l'application streamlit.
+This command will perform the following tasks:
 
-Vous pourrez ainsi lancer l'application via l'url **externe** fourni.
+- Download the data.
+- Format the data for the application.
+- Launch the streamlit application.
 
-## Auteurs
+You will thus be able to launch the application via the provided **external** URL.
+
+
+## Authors
 
 - [Samuel Baheux](https://github.com/SamuelBaheux)
 - [Samuel Launay Pariente](https://github.com/samuel-LP)
